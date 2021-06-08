@@ -8,25 +8,13 @@ import ru.javawebinar.basejava.model.Resume;
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    public void delete(String uuid) {
-        String methodName = new Object() {
-        }.getClass().getEnclosingMethod().getName();
-        if (isItPossible(methodName, uuid)) {
-            int index = checkIndexInArray(uuid);
-            storage[index] = storage[size - 1];
-            storage[size - 1] = null;
-            size--;
-        }
+    protected void fillDeletedElement(int index) {
+        storage[index] = storage[size - 1];
     }
 
     @Override
-    public void save(Resume r) {
-        String methodName = new Object() {
-        }.getClass().getEnclosingMethod().getName();
-        if (isItPossible(methodName, r.getUuid())) {
-            storage[size] = r;
-            size++;
-        }
+    protected void insertElement(Resume r, int index) {
+        storage[size] = r;
     }
 
     @Override
