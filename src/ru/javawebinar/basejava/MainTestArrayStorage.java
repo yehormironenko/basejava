@@ -1,28 +1,25 @@
 package ru.javawebinar.basejava;
 
 import ru.javawebinar.basejava.model.Resume;
-import ru.javawebinar.basejava.storage.AbstractArrayStorage;
-import ru.javawebinar.basejava.storage.SortedArrayStorage;
-
+import ru.javawebinar.basejava.storage.ArrayStorage;
 
 /**
  * Test ru.javawebinar.basejava.storage.ArrayStorage
  */
 public class MainTestArrayStorage {
-    //static final AbstractArrayStorage ARRAY_STORAGE = new ArrayStorage() ;
-    static final AbstractArrayStorage ARRAY_STORAGE = new SortedArrayStorage();
+    static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
 
     public static void main(String[] args) {
         Resume r1 = new Resume();
-        r1.setUuid("uuid1");
+        //r1.setUuid("uuid1");
         Resume r2 = new Resume();
-        r2.setUuid("uuid2");
+       // r2.setUuid("uuid2");
         Resume r3 = new Resume();
-        r3.setUuid("uuid3");
+        //r3.setUuid("uuid3");
 
         ARRAY_STORAGE.save(r1);
-        ARRAY_STORAGE.save(r3);
         ARRAY_STORAGE.save(r2);
+        ARRAY_STORAGE.save(r3);
 
         System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
         System.out.println("Size: " + ARRAY_STORAGE.size());
