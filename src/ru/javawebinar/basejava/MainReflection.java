@@ -11,12 +11,11 @@ public class MainReflection {
         Resume r = new Resume();
         Field field = r.getClass().getDeclaredFields()[0];
         field.setAccessible(true);
-        //System.out.println(field.getName());
+        System.out.println(field.getName());
         field.get(r);
-        //System.out.println(r);
+        System.out.println(r);
 
-        //Method method = r.getClass().getMethod("toString", null);
-        Method method = r.getClass().getDeclaredMethod("toString", null);
+        Method method = r.getClass().getMethod("toString", null);
         System.out.println(method.invoke(r));
 
     }
