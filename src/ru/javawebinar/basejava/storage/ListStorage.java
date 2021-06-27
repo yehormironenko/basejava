@@ -5,17 +5,16 @@ import ru.javawebinar.basejava.exception.NotExistStorageException;
 import ru.javawebinar.basejava.model.Resume;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListStorage extends AbstractStorage {
 
-    List<Resume> storage = new ArrayList<>();
+    ArrayList<Resume> storage = new ArrayList<>();
 
     @Override
     public void clear() {
         storage.clear();
         size = 0;
-
+        storage.trimToSize();
     }
 
     @Override
