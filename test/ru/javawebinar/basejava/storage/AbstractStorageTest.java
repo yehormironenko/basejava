@@ -7,11 +7,13 @@ import ru.javawebinar.basejava.exception.NotExistStorageException;
 import ru.javawebinar.basejava.exception.StorageException;
 import ru.javawebinar.basejava.model.Resume;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class AbstractStorageTest {
 
-    private final Storage storage;
+    protected final Storage storage;
 
     public AbstractStorageTest(Storage storage) {
         this.storage = storage;
@@ -54,6 +56,7 @@ public abstract class AbstractStorageTest {
     @Test
     public void getAll() {
         Resume[] resumes = storage.getAll();
+        Arrays.sort(resumes);
         assertAll("resumes",
                 () -> assertEquals(resumes[0], storage.get("uuid1")),
                 () -> assertEquals(resumes[1], storage.get("uuid2")),
