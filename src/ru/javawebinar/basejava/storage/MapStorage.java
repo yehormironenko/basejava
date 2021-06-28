@@ -1,66 +1,57 @@
 package ru.javawebinar.basejava.storage;
 
-import ru.javawebinar.basejava.exception.ExistStorageException;
-import ru.javawebinar.basejava.exception.NotExistStorageException;
 import ru.javawebinar.basejava.model.Resume;
 
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO implement
+// TODO create new MapStorage with search key not uuid
 public class MapStorage extends AbstractStorage {
-
-    Map<String, Resume> storage = new HashMap<>();
+    private Map<String, Resume> map = new HashMap<>();
 
     @Override
-    public void clear() {
-        storage.clear();
-        size = 0;
+    protected String getSearchKey(String uuid) {
+        return uuid;
     }
 
     @Override
-    public void update(Resume r) {
-        if (storage.replace(r.getUuid(), r) == null) {
-            throw new NotExistStorageException(r.getUuid());
-        }
+    protected void doUpdate(Resume r, Object searchKey) {
+        map.replace((String) searchKey,r);
+    }
+
+    @Override
+    protected boolean isExist(Object searchKey) {
+        return map.containsKey(searchKey);
+    }
+
+    @Override
+    protected void doSave(Resume r, Object searchKey) {
+        map.putIfAbsent((String) searchKey,r);
+    }
+
+    @Override
+    protected Resume doGet(Object searchKey) {
+        return map.get(searchKey);
+    }
+
+    @Override
+    protected void doDelete(Object searchKey) {
+        map.remove(searchKey);
+    }
+
+    @Override
+    public void clear() {
+        map.clear();
     }
 
     @Override
     public Resume[] getAll() {
-        return storage.values().toArray(new Resume[0]);
+        return map.values().toArray(new Resume[0]);
     }
 
     @Override
-    public Resume get(String uuid) {
-        if (storage.get(uuid) != null) {
-            return storage.get(uuid);
-        } else throw new NotExistStorageException(uuid);
-    }
-
-    @Override
-    protected Resume getMethod(int index) {
-        return null;
-    }
-
-    @Override
-    protected int getIndex(String uuid) {
-        return 0;
-    }
-
-    @Override
-    public void save(Resume r) {
-        if (storage.putIfAbsent(r.getUuid(), r) != null) {
-            throw new ExistStorageException(r.getUuid());
-        } else {
-            size++;
-        }
-    }
-
-    @Override
-    public void delete(String uuid) {
-        if (storage.remove(uuid) != null) {
-            size--;
-        } else {
-            throw new NotExistStorageException(uuid);
-        }
+    public int size() {
+        return map.size();
     }
 }
