@@ -37,6 +37,11 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
+    protected Resume getMethod(int index) {
+        return null;
+    }
+
+    @Override
     protected int getIndex(String uuid) {
         return 0;
     }
@@ -48,7 +53,6 @@ public class MapStorage extends AbstractStorage {
         } else {
             size++;
         }
-
     }
 
     @Override

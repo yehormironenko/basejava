@@ -39,4 +39,9 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     protected abstract void fillDeletedElement(int index);
 
     protected abstract void insertElement(Resume r, int index);
+
+    @Override
+    protected Resume getMethod(int index) {
+        return storage[index];
+    }
 }

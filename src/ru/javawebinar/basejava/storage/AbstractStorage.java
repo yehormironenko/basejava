@@ -36,17 +36,14 @@ public abstract class AbstractStorage implements Storage {
         return Arrays.copyOfRange(storage, 0, size);
     }
 
-
-
     public Resume get(String uuid) {
         int index = getIndex(uuid);
         if (index < 0) {
             throw new NotExistStorageException(uuid);
         }
-        return storage[index];
+        return getMethod(index);
     }
 
-
-
+    protected abstract Resume getMethod(int index);
     protected abstract int getIndex(String uuid);
 }
