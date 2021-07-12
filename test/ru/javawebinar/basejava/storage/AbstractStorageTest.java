@@ -109,7 +109,7 @@ public abstract class AbstractStorageTest {
             fail();
         }
         assertEquals(storage.size(), 10000);
-        assertThrows(StorageException.class, () -> storage.save(new Resume()));
+        assertThrows(StorageException.class, () -> storage.save(new Resume("new")));
     }
 
     private void assertGet(Resume r) {
