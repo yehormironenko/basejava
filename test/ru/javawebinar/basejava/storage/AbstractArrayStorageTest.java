@@ -10,7 +10,7 @@ public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
 
     @Disabled
     @Override
-    void storageOverflow() {
-        super.storageOverflow();
+    void saveOverflow() {
+        super.saveOverflow();
     }
 }

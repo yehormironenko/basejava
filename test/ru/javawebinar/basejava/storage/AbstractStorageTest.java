@@ -100,10 +100,10 @@ public abstract class AbstractStorageTest {
     }
 
     @Test
-    void storageOverflow() {
+    void saveOverflow() {
         try {
             for (int i = storage.size(); i < 10000; i++) {
-                storage.save(new Resume());
+                storage.save(new Resume("new"));
             }
         } catch (StorageException e) {
             fail();
