@@ -7,7 +7,7 @@ import ru.javawebinar.basejava.exception.NotExistStorageException;
 import ru.javawebinar.basejava.exception.StorageException;
 import ru.javawebinar.basejava.model.Resume;
 
-import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,13 +18,16 @@ public abstract class AbstractStorageTest {
     public AbstractStorageTest(Storage storage) {
         this.storage = storage;
     }
-
     private static final String UUID_1 = "uuid1";
-    private static final Resume RESUME_1 = new Resume(UUID_1);
+    private static final String USER_1 = "user1";
     private static final String UUID_2 = "uuid2";
-    private static final Resume RESUME_2 = new Resume(UUID_2);
+    private static final String USER_2 = "user2";
     private static final String UUID_3 = "uuid3";
-    private static final Resume RESUME_3 = new Resume(UUID_3);
+    private static final String USER_3 = "user3";
+
+    private static final Resume RESUME_1 = new Resume(UUID_1, USER_1);
+    private static final Resume RESUME_2 = new Resume(UUID_2, USER_2);
+    private static final Resume RESUME_3 = new Resume(UUID_3, USER_3);
 
 
     @BeforeEach
@@ -55,17 +58,16 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void getAll() {
-        Resume[] resumes = storage.getAll();
-        Arrays.sort(resumes);
+        List<Resume> resumes = storage.getAllSorted();
         assertAll("resumes",
-                () -> assertEquals(resumes[0], storage.get("uuid1")),
-                () -> assertEquals(resumes[1], storage.get("uuid2")),
-                () -> assertEquals(resumes[2], storage.get("uuid3")));
+                () -> assertEquals(resumes.get(0), storage.get("uuid1")),
+                () -> assertEquals(resumes.get(1), storage.get("uuid2")),
+                () -> assertEquals(resumes.get(2), storage.get("uuid3")));
     }
 
     @Test
     public void save() {
-        Resume r = new Resume("uuid4");
+        Resume r = new Resume("uuid4", "user4");
         storage.save(r);
         assertEquals(storage.get("uuid4"), r);
     }
