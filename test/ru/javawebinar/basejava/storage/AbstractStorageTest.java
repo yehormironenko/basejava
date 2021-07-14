@@ -18,6 +18,7 @@ public abstract class AbstractStorageTest {
     public AbstractStorageTest(Storage storage) {
         this.storage = storage;
     }
+
     private static final String UUID_1 = "uuid1";
     private static final String USER_1 = "user1";
     private static final String UUID_2 = "uuid2";
@@ -105,7 +106,7 @@ public abstract class AbstractStorageTest {
     void saveOverflow() {
         try {
             for (int i = storage.size(); i < 10000; i++) {
-                storage.save(new Resume("new"));
+                storage.save(new Resume("new" + i));
             }
         } catch (StorageException e) {
             fail();
