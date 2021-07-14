@@ -9,7 +9,7 @@ import java.util.Map;
 
 // TODO implement
 // TODO create new MapStorage with search key not uuid
-public class MapStorage extends AbstractStorage {
+public class MapUuidStorage extends AbstractStorage {
     private Map<String, Resume> map = new HashMap<>();
 
     @Override

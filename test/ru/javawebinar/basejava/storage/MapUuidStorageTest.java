@@ -2,10 +2,10 @@ package ru.javawebinar.basejava.storage;
 
 import org.junit.jupiter.api.Disabled;
 
-class MapStorageTest extends AbstractArrayStorageTest {
+class MapUuidStorageTest extends AbstractArrayStorageTest {
 
-    public MapStorageTest() {
-        super(new MapStorage());
+    public MapUuidStorageTest() {
+        super(new MapUuidStorage());
     }
 
     @Disabled
