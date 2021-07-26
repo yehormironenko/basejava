@@ -1,5 +1,7 @@
 package ru.javawebinar.basejava.model;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -10,8 +12,9 @@ public class Resume implements Comparable<Resume> {
 
     // Unique identifier
     private final String uuid;
-
     private final String fullName;
+    private Map<ContactSection, String> contacts = new EnumMap<>(ContactSection.class);
+    private Map<SectionType, Section> sections = new EnumMap<SectionType, Section>(SectionType.class);
 
     public Resume(String fullName) {
         this(UUID.randomUUID().toString(), fullName);
@@ -24,13 +27,23 @@ public class Resume implements Comparable<Resume> {
         this.fullName = fullName;
     }
 
+
     public String getUuid() {
         return uuid;
+    }
+
+    public Map<ContactSection, String> getContacts() {
+        return contacts;
     }
 
     public String getFullName() {
         return fullName;
     }
+
+    public Map<SectionType, Section> getSections() {
+        return sections;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,6 +54,14 @@ public class Resume implements Comparable<Resume> {
         if (!uuid.equals(resume.uuid)) return false;
         return fullName.equals(resume.fullName);
 
+    }
+
+    public void addContact(ContactSection contactType, String value) {
+        contacts.put(contactType, value);
+    }
+
+    public void addSection(SectionType sectionType, Section section) {
+        sections.put(sectionType, section);
     }
 
     @Override
