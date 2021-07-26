@@ -5,15 +5,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-/**
- * ru.javawebinar.basejava.model.Resume class
- */
 public class Resume implements Comparable<Resume> {
 
     // Unique identifier
     private final String uuid;
     private final String fullName;
-    private Map<ContactSection, String> contacts = new EnumMap<>(ContactSection.class);
+    private Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
     private Map<SectionType, Section> sections = new EnumMap<SectionType, Section>(SectionType.class);
 
     public Resume(String fullName) {
@@ -32,7 +29,7 @@ public class Resume implements Comparable<Resume> {
         return uuid;
     }
 
-    public Map<ContactSection, String> getContacts() {
+    public Map<ContactType, String> getContacts() {
         return contacts;
     }
 
@@ -56,7 +53,7 @@ public class Resume implements Comparable<Resume> {
 
     }
 
-    public void addContact(ContactSection contactType, String value) {
+    public void addContact(ContactType contactType, String value) {
         contacts.put(contactType, value);
     }
 

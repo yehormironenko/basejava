@@ -2,24 +2,23 @@ package ru.javawebinar.basejava;
 
 import ru.javawebinar.basejava.model.*;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ResumeTestData {
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) {
         Resume resume = new Resume("Григорий Кислин");
 
         //Contacts
-        resume.addContact(ContactSection.PHONE, "1234");
-        resume.addContact(ContactSection.SKYPE, "grigory.kislin");
-        resume.addContact(ContactSection.EMAIL, "gkislin@yandex.ru");
-        resume.addContact(ContactSection.LINKEDIN, "linked");
-        resume.addContact(ContactSection.GITHUB, "gitHub");
-        resume.addContact(ContactSection.STACKOVERFLOW, "stackoverflow");
-        resume.addContact(ContactSection.HOMEPAGE, "homepage");
+        resume.addContact(ContactType.PHONE, "1234");
+        resume.addContact(ContactType.SKYPE, "grigory.kislin");
+        resume.addContact(ContactType.MAIL, "gkislin@yandex.ru");
+        resume.addContact(ContactType.LINKEDIN, "linked");
+        resume.addContact(ContactType.GITHUB, "gitHub");
+        resume.addContact(ContactType.STATCKOVERFLOW, "stackoverflow");
+        resume.addContact(ContactType.HOME_PAGE, "homepage");
 
         System.out.println(resume.getContacts());
         //Text
@@ -35,10 +34,10 @@ public class ResumeTestData {
                         "DB: PostgreSQL(наследование, pgplsql, PL/Python), Redis (Jedis), H2, Oracle,"))));
 
 
-        Organization organization = new Organization("New Organization", LocalDate.of(2020, 1, 1),
-                LocalDate.now(), "Description for new org", new Link(new URL("http://javaops.ru/")));
+        Organization organization = new Organization("New Organization", "url", LocalDate.of(2020, 1, 1),
+                LocalDate.now(), "Tittle for new org", "description" );
 
-        resume.addSection(SectionType.EXPERIENCE, new OrganizationSection(new ArrayList<>(Arrays.asList(organization))));
+        resume.addSection(SectionType.EXPERIENCE, new OrganizationSection(new ArrayList<>(Collections.singletonList(organization))));
 
         System.out.println(resume.getSections());
     }

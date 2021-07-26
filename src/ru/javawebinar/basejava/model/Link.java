@@ -1,13 +1,29 @@
 package ru.javawebinar.basejava.model;
 
-import java.net.URL;
 import java.util.Objects;
 
-public class Link {
-    private final URL url;
 
-    public Link(URL url) {
+public class Link {
+    private final String name;
+    private final String url;
+
+    public Link(String name, String url) {
+        Objects.requireNonNull(name, "name must not be null");
+        this.name = name;
         this.url = url;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    @Override
+    public String toString() {
+        return "Link(" + name + ',' + url + ')';
     }
 
     @Override
@@ -17,22 +33,15 @@ public class Link {
 
         Link link = (Link) o;
 
+        if (!name.equals(link.name)) return false;
         return Objects.equals(url, link.url);
+
     }
 
     @Override
     public int hashCode() {
-        return url != null ? url.hashCode() : 0;
-    }
-
-    public URL getUrl() {
-        return url;
-    }
-
-    @Override
-    public String toString() {
-        return "Link{" +
-                "url=" + url +
-                '}';
+        int result = name.hashCode();
+        result = 31 * result + (url != null ? url.hashCode() : 0);
+        return result;
     }
 }
