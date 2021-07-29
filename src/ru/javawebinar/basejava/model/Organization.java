@@ -22,6 +22,10 @@ public class Organization {
         this.description = description;
     }
 
+    public Link getHomePage() {
+        return homePage;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
