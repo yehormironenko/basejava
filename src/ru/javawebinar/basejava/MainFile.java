@@ -1,29 +1,24 @@
 package ru.javawebinar.basejava;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.util.Objects;
 
 public class MainFile {
     public static void main(String[] args) {
-        File file = new File("D:/OneDrive - Computaris/java/projects/basejava/.gitignore");
-        try {
-            System.out.println(file.getCanonicalFile());
+        File file = new File("./src");
+        File[] list = file.listFiles();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        File dir = new File("./src/ru/javawebinar/basejava/");
-        System.out.println(dir.isDirectory());
+        StringBuilder delimiter = new StringBuilder("-");
+        printTree(Objects.requireNonNull(list), delimiter);
+    }
 
-        /*for (String name : dir.list()) {
-            System.out.println(name);
-        }*/
-
-        try (FileInputStream fis = new FileInputStream(file)) {
-            System.out.println(fis.read());
-        } catch (IOException e) {
-            throw new RuntimeException();
+    public static void printTree(File[] list, StringBuilder delimiter) {
+        for (File value : list) {
+            System.out.println(delimiter + value.toString().replaceAll(".*\\\\", ""));
+            if (value.isDirectory()) {
+                delimiter.append("-");
+                printTree(Objects.requireNonNull(value.listFiles()), delimiter);
+            }
         }
     }
 }
