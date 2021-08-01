@@ -6,10 +6,12 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class ResumeTestData {
-    public static void main(String[] args) {
-        Resume resume = new Resume("Григорий Кислин");
 
-        //Contacts
+   // public static void main(String[] args) {
+   //     createResume(Resume);
+   // }
+
+    public static Resume fillResume (Resume resume) {
         resume.addContact(ContactType.PHONE, "1234");
         resume.addContact(ContactType.SKYPE, "grigory.kislin");
         resume.addContact(ContactType.MAIL, "gkislin@yandex.ru");
@@ -33,23 +35,26 @@ public class ResumeTestData {
 
 
         Organization organization = new Organization("New Organization", "url", LocalDate.of(2020, 1, 1),
-                LocalDate.now(), "Tittle for new org", "description" );
+                LocalDate.now(), "Tittle for new org", "description");
 
         Organization organization2 = new Organization("New Organization", "url", LocalDate.of(2010, 2, 2),
-                LocalDate.of(2011,2,2), "Tittle for new org2", "description2" );
+                LocalDate.of(2011, 2, 2), "Tittle for new org2", "description2");
 
         Organization organization3 = new Organization("New XXX", "urXl", LocalDate.of(2010, 2, 2),
-                LocalDate.of(2011,2,2), "Tittle for new org3", "description3" );
+                LocalDate.of(2011, 2, 2), "Tittle for new org3", "description3");
 
-        Map<String, ArrayList<Organization>> org =  new HashMap<>() ;
+        Map<String, ArrayList<Organization>> org = new HashMap<>();
 
 
-        org.put(organization.getHomePage().getName(), new ArrayList<>(Arrays.asList(organization,organization2)));
+        org.put(organization.getHomePage().getName(), new ArrayList<>(Arrays.asList(organization, organization2)));
         //org.put(organization2.getHomePage().getName(), new ArrayList<>(Collections.singletonList(organization2)));
         org.put(organization3.getHomePage().getName(), new ArrayList<>(Collections.singletonList(organization3)));
 
         resume.addSection(SectionType.EXPERIENCE, new OrganizationSection(org));
 
-        System.out.println(resume.getSections());
+        //System.out.println(resume.getSections());
+
+        return resume;
     }
+
 }

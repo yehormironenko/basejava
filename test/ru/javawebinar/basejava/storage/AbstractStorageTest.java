@@ -2,6 +2,7 @@ package ru.javawebinar.basejava.storage;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.javawebinar.basejava.ResumeTestData;
 import ru.javawebinar.basejava.exception.ExistStorageException;
 import ru.javawebinar.basejava.exception.NotExistStorageException;
 import ru.javawebinar.basejava.exception.StorageException;
@@ -15,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public abstract class AbstractStorageTest {
 
     protected final Storage storage;
-
     public AbstractStorageTest(Storage storage) {
         this.storage = storage;
     }
@@ -30,6 +30,13 @@ public abstract class AbstractStorageTest {
     private static final Resume RESUME_1 = new Resume(UUID_1, USER_1);
     private static final Resume RESUME_2 = new Resume(UUID_2, USER_2);
     private static final Resume RESUME_3 = new Resume(UUID_3, USER_3);
+
+    static {
+        ResumeTestData.fillResume(RESUME_1);
+        ResumeTestData.fillResume(RESUME_2);
+        ResumeTestData.fillResume(RESUME_3);
+    }
+
 
 
     @BeforeEach
