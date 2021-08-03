@@ -53,12 +53,12 @@ public class Resume implements Comparable<Resume> {
 
     }
 
-    public void addContact(ContactType contactType, String value) {
-        contacts.put(contactType, value);
+    public void addContact(ContactType type, String value) {
+        contacts.put(type, value);
     }
 
-    public void addSection(SectionType sectionType, Section section) {
-        sections.put(sectionType, section);
+    public void addSection(SectionType type, Section section) {
+        sections.put(type, section);
     }
 
     @Override

@@ -1,21 +1,24 @@
 package ru.javawebinar.basejava.model;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 
 public class OrganizationSection extends Section {
+    private final List<Organization> organizations;
 
-   private final Map<String, ArrayList<Organization>> ogranizationMap;// =  new HashMap<>()
-
-    public OrganizationSection(Map<String, ArrayList<Organization>> ogranizationMap) {
-        Objects.requireNonNull(ogranizationMap, "organizations must not be null");
-        this.ogranizationMap = ogranizationMap;
+    public OrganizationSection(Organization... organizations) {
+        this(Arrays.asList(organizations));
     }
 
-    public Map<String, ArrayList<Organization>> getOgranizationMap() {
-        return ogranizationMap;
+    public OrganizationSection(List<Organization> organizations) {
+        Objects.requireNonNull(organizations, "organizations must not be null");
+        this.organizations = organizations;
+    }
+
+    public List<Organization> getOrganizations() {
+        return organizations;
     }
 
     @Override
@@ -25,17 +28,17 @@ public class OrganizationSection extends Section {
 
         OrganizationSection that = (OrganizationSection) o;
 
-        return ogranizationMap.equals(that.ogranizationMap);
+        return organizations.equals(that.organizations);
 
     }
 
     @Override
     public int hashCode() {
-        return ogranizationMap.hashCode();
+        return organizations.hashCode();
     }
 
     @Override
     public String toString() {
-        return ogranizationMap.toString();
+        return organizations.toString();
     }
 }
