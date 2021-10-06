@@ -35,3 +35,4 @@ public class ResumeTestData {
                                 new Organization.Position(2015, Month.JANUARY, "position1", "content1"))));
     }
 }
+
