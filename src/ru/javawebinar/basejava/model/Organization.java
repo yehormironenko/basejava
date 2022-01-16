@@ -62,7 +62,6 @@ public class Organization implements Serializable {
         return "Organization(" + homePage + "," + positions + ')';
     }
 
-
     @XmlAccessorType(XmlAccessType.FIELD)
     public static class Position implements Serializable {
         @XmlJavaTypeAdapter(LocalDateAdapter.class)
