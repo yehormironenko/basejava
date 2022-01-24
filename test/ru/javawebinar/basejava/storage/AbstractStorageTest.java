@@ -39,7 +39,7 @@ public abstract class AbstractStorageTest {
         R1 = new Resume(UUID_1, USER_1);
         R2 = new Resume(UUID_2, USER_2);
         R3 = new Resume(UUID_3, USER_3);
-        ResumeTestData.fillResume();
+       // ResumeTestData.fillResume();
     }
 
     @BeforeEach
@@ -71,6 +71,7 @@ public abstract class AbstractStorageTest {
     @Test
     public void getAllSorted() {
         List<Resume> resumes = storage.getAllSorted();
+
         assertAll("resumes",
                 () -> assertEquals(3, resumes.size()),
                 () -> assertEquals(resumes, Arrays.asList(R1, R2, R3)));
