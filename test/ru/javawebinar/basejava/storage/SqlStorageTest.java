@@ -4,13 +4,15 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.javawebinar.basejava.Config;
 import ru.javawebinar.basejava.exception.StorageException;
+import ru.javawebinar.basejava.sql.TransactionTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SqlStorageTest extends AbstractStorageTest {
 
     public SqlStorageTest() {
-        super(new SqlStorage(Config.get().getDbUrl(), Config.get().getDbUser(), Config.get().getDbPassword()));
+       // super(new SqlStorage(Config.get().getDbUrl(), Config.get().getDbUser(), Config.get().getDbPassword()));
+        super(new SqlStorage(new TransactionTemplate(Config.get().getDbUrl(), Config.get().getDbUser(), Config.get().getDbPassword())));
     }
 
     @Disabled
